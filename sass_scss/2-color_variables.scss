@@ -1,0 +1,15 @@
+/* Assigning a color to html tags */
+$color-txt: #3D3D3D;
+$color-bg: #6D6D6D;
+body {
+    color: $color-txt;
+    background-color: $color-bg;
+}
+
+p {
+    color: $color-txt;
+}
+
+h2 {
+    background-color: $color-bg;
+}

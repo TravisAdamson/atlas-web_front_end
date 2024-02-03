@@ -1,0 +1,12 @@
+/* Using mixin for margins */
+@mixin mixed-marg($val) {
+    margin-left: $val;
+    margin-right: $val;
+}
+body {
+    @include mixed-marg(10px);
+}
+
+div {
+    @include mixed-marg(15px);
+}

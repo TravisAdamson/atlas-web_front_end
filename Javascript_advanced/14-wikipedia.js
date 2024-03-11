@@ -7,12 +7,16 @@ function createElement(data) {
 }
 
 function queryWikipedia(callback) {
-	let request = new XMLHttpRequest();
-	request.open("GET", "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=Stack%20Overflow", true);
-	request.setRequestHeader("Origin", "*");
-	request.onload = (payload) => (callback(payload.extract));
-	request.onerror = () => callback(new Error);
-	request.send();
-}
+    let newRequest = new XMLHttpRequest();
+    newRequest.open("GET", "https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=Stack%20Overflow&origin=*", true);
+    newRequest.onload = function() {
+        if (this.status === 200) {
+            const data = JSON.parse(this.response);
+            const article = data.query.pages[21721040].extract;
+            callback(article);
+        }
+    }
+    newRequest.send();
+};
 
 queryWikipedia(createElement);

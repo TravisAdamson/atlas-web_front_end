@@ -9,17 +9,36 @@
         crossorigin="anonymous"></script>
         
         <script> type="application/javascript"
-        function createFamilyTree () {
-             $( "body" ).append( "<table>" ),
-                $( "table" ).append( "<tr>" ),
-                $( "tr" ).append( "<th>" ),
-                $( "th" ).append( "Firstname" ),
-                $( "tr" ).append( "<th>" ),
-                $( "th" ).append( "Lastname" );
-        };
-        $(function () {
-            createFamilyTree();
-        });
+           function createFamilyTree () {
+            $('body').append('<table></table>'),
+            $('table').append('<thead></thead>'),
+            $('thead').append('<tr></tr>'),
+            $('thead > tr').append('<th></th>'),
+            $('thead > tr > th').text('Firstname'),
+            $('thead > tr').append('<th></th>'),
+            $('thead > tr > th:nth-child(2)').text('Lastname'),
+            $('table').append('<tbody></tbody>'),
+            $('tbody').append('<tr></tr>'),
+            $('tbody').append('<tr></tr>'),
+            $('tbody').append('<tr></tr>'),
+            $('tbody > tr:nth-child(1)').append('<td></td>'),
+            $('tbody > tr:nth-child(1)').append('<td></td>'),
+            $('tbody > tr:nth-child(2)').append('<td></td>'),
+            $('tbody > tr:nth-child(2)').append('<td></td>'),
+            $('tbody > tr:nth-child(3)').append('<td></td>'),
+            $('tbody > tr:nth-child(3)').append('<td></td>'),
+            $('tbody > tr:nth-child(1) > td:first').text('Guillaume'),
+            $('tbody > tr:nth-child(1) > td:last').text('Salva'),
+            $('tbody > tr:nth-child(2) > td:first').text('Paulette'),
+            $('tbody > tr:nth-child(2) > td:last').text('Salva'),
+            $('tbody > tr:nth-child(3) > td:first').text('Antoine'),
+            $('tbody > tr:nth-child(3) > td:last').text('Salva');
+
+           };
+           
+            $(function () {
+                createFamilyTree();
+            });
         </script>
     </head>
 

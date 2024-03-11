@@ -1,39 +1,25 @@
-function changeMode(size, weight, transform, background, color) {
-	document.documentElement.style["font-size"] = size;
-	document.documentElement.style["font-weight"] = weight;
-	document.documentElement.style["text-transform"] = transform;
-	document.documentElement.style["background-color"] = background;
-	document.documentElement.style["color"] = color;
+const changeMode = (size, weight, transform, background, color) => {
+    return () => {
+        document.body.style.fontSize = `${size}px`;
+        document.body.style.fontWeight = weight;
+        document.body.style.textTransform = transform;
+        document.body.style.backgroundColor = background;
+        document.body.style.color = color;
+    };
 }
+const main = () => {
+    let spooky = changeMode(9, "bold", "uppercase", "pink", "green");
+    let darkMode = changeMode(12, "bold", "capitalize", "black", "white");
+    let screamMode = changeMode(12, "normal", "lowercase", "white", "black");
+    document.querySelector("body").innerHTML = `
+        <p>Welcome Holberton</p>
+        <button id="btn1">Spooky</button>
+        <button id="btn2">Dark mode</button>
+        <button id="btn3">Scream mode</button>
+        `;
+        document.getElementById("btn1").addEventListener("click", spooky);
+        document.getElementById("btn2").addEventListener("click", darkMode);
+        document.getElementById("btn3").addEventListener("click", screamMode);
+    };
 
-let spooky = function() {changeMode(9, "bold", "uppercase", "pink", "green")};
-let darkMode = function() {changeMode(12, "bold", "capitalize", "black", "white")};
-let screamMode = function() {changeMode(12, "normal", "lowercase", "white", "black")};
-
-function main() {
-	let body = document.body;
-	let paragraph = document.createElement("P");
-	let text = document.createTextNode("Welcome Holberton");
-	paragraph.appendChild(text);
-	body.appendChild(paragraph);
- 
-	let spookyButton = document.createElement("BUTTON");
-	let spookyText = document.createTextNode("Spooky");
-	spookyButton.setAttribute("onClick", "spooky()");
-	spookyButton.appendChild(spookyText);
-	body.appendChild(spookyButton);
-
-	let darkButton = document.createElement("BUTTON");
-	let darkText = document.createTextNode("Dark mode");
-	darkButton.setAttribute("onClick", "darkMode()");
-	darkButton.appendChild(darkText);
-	body.appendChild(darkButton);
-
-	let screamButton = document.createElement("BUTTON");
-	let screamText = document.createTextNode("Scream mode");
-	screamButton.setAttribute("onClick", "screamMode()");
-	screamButton.appendChild(screamText);
-	body.appendChild(screamButton);
-}
-
-window.onload = main;
+main();

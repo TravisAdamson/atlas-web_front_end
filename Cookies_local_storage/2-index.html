@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, 
+    initial-scale=1.0, viewport-fit=cover">
+    <title>Title</title>
+    <script type="application/javascript">
+        function setCookies() {
+            const fname = document.querySelector('#firstname').value;
+            document.cookie = `firstname=${fname};max-age=864000`;
+            const email = document.querySelector('#email').value;
+            document.cookie = `email=${email};max-age=864000`;
+        }
+
+        function showCookies() {
+            const paragraph = document.createElement("P");
+            paragraph.textContent = `Email: ${getCookie('email')} - Firstname: ${getCookie('firstname')}`;
+            document.querySelector('body').appendChild(paragraph);
+        }
+
+        function getCookie(name) {
+            const spec = /(\w+)=|; /g;
+            const ncookies = document.cookie.split(spec).filter((each) => each);
+            for (let i = 0; i < ncookies.length; i++) {
+                if (ncookies[i] === name) {
+                    return ncookies[i + 1];
+                }
+            }
+            
+            return '';
+        }
+    </script>
+</head>
+<body>
+    <h1>Login to the website</h1>
+    <input 
+    type="text" 
+    id="firstname" 
+    placeholder="Firstname"
+    >
+    <input 
+    type="text" 
+    id="email" 
+    placeholder="Email"
+    >
+    <button onclick="setCookies()">Log me in</button>
+    <h1>Cookies</h1>
+    <button onclick="showCookies()">Show the cookies</button>
+</body>
+</html>

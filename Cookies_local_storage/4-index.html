@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, 
+    initial-scale=1.0, viewport-fit=cover">
+    <title>Task 4</title>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2.2.1/src/js.cookie.min.js"></script>
+</head>
+<body>
+    <div id="form">
+        <h2>Login to the website</h2>
+        <input 
+        type="text" 
+        id="firstname" 
+        placeholder="Firstname"
+        >
+        <input 
+        type="email" 
+        id="email" 
+        placeholder="Email"
+        >
+        <button onclick="setCookies(); location.reload()" id="login">Log me in</button>
+    </div>
+    <script type="application/javascript">
+        const elems = {
+            firstname: document.querySelector('#firstname'),
+            email: document.querySelector('#email'),
+            form: document.querySelector('#form'),
+            body: document.querySelector('body')
+        }
+
+        function setCookies() {
+            const fname = elems.firstname.value;
+            const email = elems.email.value;
+            if (fname && email) {
+                Cookies.set('firstname', fname, { expires: 10 });
+                Cookies.set('email', email, { expires: 10 });
+            }
+        }
+
+        function showForm() {
+            const mess = document.querySelector('#welcome');
+            if (mess) {
+                mess.remove();
+            }
+            elems.form.style.display = 'block';
+        }
+
+        function hideForm() {
+            elems.form.style.display = 'none';
+        }
+
+        function deleteCookiesAndShowForm() {
+            const end = new Date().toGMTString();
+
+            Cookies.remove('firstname');
+            Cookies.remove('email');
+
+            showForm();
+        }
+
+        function showWelcomeMessageOrForm() {
+            if (!document.cookie) {
+                showForm();
+            } else {
+                const wDiv = document.createElement('div');
+                wDiv.innerHTML = `<h1 id="welcome">Welcome: ${Cookies.get('firstname')} <a style="font-weight: normal; font-style: italic; margin-left: 10px;" onclick="deleteCookiesAndShowForm()">(logout)</a></h1>`;
+                elems.body.appendChild(wDiv);
+                hideForm();
+            }
+        }
+
+        showWelcomeMessageOrForm();
+    </script>
+</body>
+</html>

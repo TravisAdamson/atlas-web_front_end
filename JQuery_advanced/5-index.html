@@ -17,10 +17,8 @@
             };
 
             function addNewMember (firstName, lastName) {
-                // appends new row with 3 cells to table
                 let $row = $ ( "<tr><td>" + firstName + "</td><td>" + lastName + "</td><td>(x)</td></tr>");
                 $( "body" ).find( "tbody" ).first().append( $row );
-                // (x) checkbox removes row onclick
                 let checkbox = $( "tbody" ).find( "tr" ).last();
                 checkbox.find( "td" ).click(function () {
                     checkbox.remove();

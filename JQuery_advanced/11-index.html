@@ -41,7 +41,7 @@
 
                 console.log(data);
 
-                $.post('http://localhost:3000/posts', data)
+                $.post('http://localhost:3000/posts', JSON.sttringify(data))
                 .then(function (res) {
                     
                     console.log('success');
